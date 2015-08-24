@@ -11,16 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150824043502) do
+ActiveRecord::Schema.define(version: 20150824120927) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "albums", force: :cascade do |t|
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.string   "tag"
+    t.integer  "image_count"
   end
 
   add_index "albums", ["user_id"], name: "index_albums_on_user_id", using: :btree
@@ -29,6 +30,10 @@ ActiveRecord::Schema.define(version: 20150824043502) do
     t.string   "instagram_access_token"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.string   "instagram_id"
+    t.string   "profile_image_url"
+    t.string   "name"
+    t.string   "instagram_username"
   end
 
   add_foreign_key "albums", "users"

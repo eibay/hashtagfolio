@@ -1,5 +1,13 @@
+<% if logged_in? %>
+  <%= form_for @album do |f| %>
+    <%= f.label :tag %>
+    <%= f.text_field :tag %>
+    <%= f.submit %>
+  <% end %>
+<% end %>
+
 <ul>
   <% @albums.each do |album| %>
-    <li><%= link_to album, album %></li>
+    <li><%= link_to "#{album.user.display_name} - \##{album.tag}", album %></li>
   <% end %>
 </ul>

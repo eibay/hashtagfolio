@@ -1,11 +1,18 @@
 Rails.application.routes.draw do
+  get 'users/show'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   root 'albums#index'
 
-  resources :albums, only: [:index, :show]
+  resources :albums, only: [:index, :show, :create, :destroy]
+  resources :users, only: [:show]
+
+  get '/login' => 'oauth#connect'
+  get '/oauth/callback' => 'oauth#callback'
+  delete '/logout' => 'oauth#destroy'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

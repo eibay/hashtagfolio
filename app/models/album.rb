@@ -1,7 +1,11 @@
 class Album < ActiveRecord::Base
   belongs_to :user
 
-  def images
-    user.all_images.select { |image| image[:tags].include? tag }
+  def tagged_images
+    instagetter = Instagetter.new user
+    tagged_images = instagetter.images_tagged tag
+    self.update_attribute :image_count, tagged_images.count
+    tagged_images
   end
+
 end

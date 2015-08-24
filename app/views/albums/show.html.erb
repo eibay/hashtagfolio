@@ -1,10 +1,13 @@
-<%= @album.user %>
-<%= @album %>
-<div>***</div>
+<h1><%= @album.user.display_name %></h1>
+<p>#<%= @album.tag %></p>
+<p><%= @album.image_count %> photos.</p>
+<%= link_to 'back', albums_path %>
+<% if current_user == @album.user %>
+  <%= link_to 'delete album', @album, method: :delete %>
+<% end %>
 
-<% @images.each_with_index do |photo, i| %>
+<% @images.each do |photo| %>
   <div>
-    <h3><%= "#{i + 1} - #{photo[:tags].to_s}" %></h3>
     <%= image_tag photo[:image].url, size: "#{photo[:image].height}x#{photo[:image].width}" %>
   </div>
 <% end %>
