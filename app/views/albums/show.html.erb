@@ -1,0 +1,12 @@
+<%= @album.user %>
+<%= @album %>
+<div>============================</div>
+
+
+
+<% @photos.each do |photo| %>
+  <div>
+    <%= photo %>
+    <%= image_tag photo.url, size: "#{photo.height}x#{photo.width}" %>
+  </div>
+<% end %>
