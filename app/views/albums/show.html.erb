@@ -1,10 +1,25 @@
-<%= @album.user %>
-<%= @album %>
-<div>***</div>
+
+<header>
+  <img class="avatar" src="https://d13yacurqjgara.cloudfront.net/users/22/avatars/normal/a5485ce6f3de5df6093fb271a89ba5b1.jpg?1427653634" alt="" />
+  <div class="mini-profile">
+    <p class="user-fullname">John Citizen</p>
+    <p class="bio">UI designer at Dropbox</p>
+    <p class="album-tag">#<%= @album.tag %></p>
+  </div>
+</header>
 
 <% @images.each_with_index do |photo, i| %>
-  <div>
-    <h3><%= "#{i + 1} - #{photo[:tags].to_s}" %></h3>
+
+  <div class="image">
     <%= image_tag photo[:image].url, size: "#{photo[:image].height}x#{photo[:image].width}" %>
+    <a href="#"><p class="image-name">Venus</p></a>
+    <p class="image-details">Illustration of venus, the planet...</p>
   </div>
+
+  <!-- <div>
+    <h3><%#= "#{i + 1} - #{photo[:tags].to_s}" %></h3>
+  </div>-->
 <% end %>
+
+<%= @album.user %>
+<%= @album %>
