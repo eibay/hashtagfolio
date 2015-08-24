@@ -1,3 +1,7 @@
+<% if logged_in? %>
+  <%= render 'albums/form' %>
+<% end %>
+
 <ul>
   <% @user.albums.each do |album| %>
     <li><%= link_to "\##{album.tag}", album %></li>

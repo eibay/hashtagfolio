@@ -1,9 +1,5 @@
 <% if logged_in? %>
-  <%= form_for @album do |f| %>
-    <%= f.label :tag %>
-    <%= f.text_field :tag %>
-    <%= f.submit %>
-  <% end %>
+  <%= render 'form' %>
 <% end %>
 
 <ul>
