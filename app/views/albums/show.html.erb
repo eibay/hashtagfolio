@@ -2,11 +2,9 @@
 <%= @album %>
 <div>***</div>
 
-
-
-<% @photos.each do |photo| %>
+<% @images.each_with_index do |photo, i| %>
   <div>
-    <%= photo %>
-    <%= image_tag photo.url, size: "#{photo.height}x#{photo.width}" %>
+    <h3><%= "#{i + 1} - #{photo[:tags].to_s}" %></h3>
+    <%= image_tag photo[:image].url, size: "#{photo[:image].height}x#{photo[:image].width}" %>
   </div>
 <% end %>

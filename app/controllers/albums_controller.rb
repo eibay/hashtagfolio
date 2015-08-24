@@ -5,8 +5,7 @@ class AlbumsController < ApplicationController
 
   def show
     @album = Album.find params[:id]
-    @user = @album.user
-    client = Instagram.client access_token: @user.instagram_access_token
-    @photos = client.user_recent_media.map { |photo| photo.images.standard_resolution }
+    user = @album.user
+    @images = @album.images
   end
 end
