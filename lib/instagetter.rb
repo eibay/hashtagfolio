@@ -10,9 +10,9 @@ class Instagetter
     images_by_user.each do |image_response|
       image_record = @user.images.find_or_initialize_by(instagram_id: image_response.id) do |i|
         i.link = image_response.link
-        i.url_low_res = image_response.images.low_resolution
-        i.url_thumb = image_response.images.thumbnail
-        i.url = image_response.images.standard_resolution
+        i.url_low_res = image_response.images.low_resolution.url
+        i.url_thumb = image_response.images.thumbnail.url
+        i.url = image_response.images.standard_resolution.url
         i.post_time = Time.at(image_response.created_time.to_i)
       end
 
@@ -21,15 +21,12 @@ class Instagetter
 
       if image_record.save
         image_record.tags.each do |tag|
-          tag_record
-          if !image_response.tags.include? tag.name
-            image_record.tags.delete(Tag.find_by(name: tag.name))
-          end
+          image_record.tags.delete(tag) unless image_response.tags.include? tag.name
         end
 
         image_response.tags.each do |tag|
           tag_record = Tag.find_or_create_by(name: tag)
-          image_record.tags << tag_record unless image_record.tags.include?(tag_record)
+          image_record.tags << tag_record unless image_record.tags.exists?(name: tag)
         end
       end
     end
