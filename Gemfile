@@ -26,6 +26,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'instagram', '~> 1.1.5'
 gem "figaro"
 
+gem 'bourbon'
+gem 'neat'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

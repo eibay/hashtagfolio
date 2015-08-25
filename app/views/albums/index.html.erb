@@ -1,9 +1,10 @@
-<% if logged_in? %>
-  <%= render 'form' %>
-<% end %>
 
-<ul>
-  <% @albums.each do |album| %>
-    <li><%= link_to "#{album.user.display_name} - \##{album.tag}", album %></li>
-  <% end %>
-</ul>
+<% if logged_in? %>
+
+  <ul>
+    <% @albums.each do |album| %>
+      <li><%= link_to "#{album.user.display_name} - \##{album.tag}", album %></li>
+    <% end %>
+  </ul>
+
+<% end %>
