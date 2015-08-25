@@ -2,8 +2,10 @@
 <html>
 <head>
   <title>#folio</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
+  <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">-->
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -16,7 +18,16 @@
   <p><%= link_to 'log in', login_path %></p>
 <% end %>
 
-<%= yield %>
+  <nav>
+    <a href="#"><h1 class="logo">#folio</h1></a>
+    <%= link_to 'Albums', albums_path %>
+  </nav>
+
+  <main class="container">
+
+  <%= yield %>
+
+  </main>
 
 </body>
 </html>

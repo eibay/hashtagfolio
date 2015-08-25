@@ -1,13 +1,22 @@
-<h1><%= @album.user.display_name %></h1>
-<p>#<%= @album.tag %></p>
-<p><%= @album.image_count %> photos.</p>
-<%= link_to 'back', albums_path %>
-<% if current_user == @album.user %>
-  <%= link_to 'delete album', @album, method: :delete %>
-<% end %>
+
+<header>
+  <img class="avatar" src="https://d13yacurqjgara.cloudfront.net/users/22/avatars/normal/a5485ce6f3de5df6093fb271a89ba5b1.jpg?1427653634" alt="" />
+  <div class="mini-profile">
+    <p class="user-fullname"><%= @album.user.display_name %></p>
+    <p class="bio">UI designer at Dropbox</p>
+    <p class="album-tag">#<%= @album.tag %></p>
+    <p><%= @album.image_count %> photos.</p>
+  </div>
+  <% if current_user == @album.user %>
+    <%= link_to 'delete album', @album, method: :delete %>
+  <% end %>
+</header>
 
 <% @images.each do |photo| %>
-  <div>
+
+  <div class="image">
     <%= image_tag photo[:image].url, size: "#{photo[:image].height}x#{photo[:image].width}" %>
+    <p class="image-details"><%= photo[:caption] %></p>
   </div>
+
 <% end %>

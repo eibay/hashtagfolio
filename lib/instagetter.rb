@@ -12,7 +12,7 @@ class Instagetter
   private
 
     def images_and_tags(n = -1)
-      posts_by_user(n).map { |image| { image: image.images.standard_resolution, tags: image.tags } }
+      posts_by_user(n).map { |image| { image: image.images.standard_resolution, tags: image.tags, caption: image.caption.text } }
     end
 
     def posts_by_user(n = -1)
