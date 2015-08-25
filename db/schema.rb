@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150824120927) do
+ActiveRecord::Schema.define(version: 20150825041458) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,38 @@ ActiveRecord::Schema.define(version: 20150824120927) do
 
   add_index "albums", ["user_id"], name: "index_albums_on_user_id", using: :btree
 
+  create_table "images", force: :cascade do |t|
+    t.text     "caption"
+    t.integer  "likes"
+    t.string   "link"
+    t.integer  "user_id"
+    t.string   "url_low_res"
+    t.string   "url_thumb"
+    t.string   "url"
+    t.string   "instagram_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.datetime "post_time"
+  end
+
+  add_index "images", ["user_id"], name: "index_images_on_user_id", using: :btree
+
+  create_table "images_tags", id: false, force: :cascade do |t|
+    t.integer "image_id"
+    t.integer "tag_id"
+  end
+
+  add_index "images_tags", ["image_id"], name: "index_images_tags_on_image_id", using: :btree
+  add_index "images_tags", ["tag_id"], name: "index_images_tags_on_tag_id", using: :btree
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "tags", ["name"], name: "index_tags_on_name", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "instagram_access_token"
     t.datetime "created_at",             null: false
@@ -37,4 +69,5 @@ ActiveRecord::Schema.define(version: 20150824120927) do
   end
 
   add_foreign_key "albums", "users"
+  add_foreign_key "images", "users"
 end
