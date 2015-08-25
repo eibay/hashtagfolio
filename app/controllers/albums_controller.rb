@@ -10,7 +10,7 @@ class AlbumsController < ApplicationController
 
   def show
     user = @album.user
-    @images = @album.tagged_images
+    @content = @album.tagged_images
   end
 
   def create

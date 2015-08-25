@@ -5,7 +5,11 @@ class Album < ActiveRecord::Base
     instagetter = Instagetter.new user
     tagged_images = instagetter.images_tagged tag
     self.update_attribute :image_count, tagged_images.count
-    tagged_images
+    user = instagetter.user_details
+    {
+      user: user,
+      images: tagged_images
+    }
   end
 
 end

@@ -1,6 +1,5 @@
-
 <header>
-  <img class="avatar" src="https://d13yacurqjgara.cloudfront.net/users/22/avatars/normal/a5485ce6f3de5df6093fb271a89ba5b1.jpg?1427653634" alt="" />
+  <img class="avatar" src="<%= @content[:user][:profile_picture] %>" alt="" />
   <div class="mini-profile">
     <p class="user-fullname"><%= @album.user.display_name %></p>
     <p class="bio">UI designer at Dropbox</p>
@@ -12,11 +11,11 @@
   <% end %>
 </header>
 
-<% @images.each do |photo| %>
+<% @content[:images].each do |image| %>
 
   <div class="image">
-    <%= image_tag photo[:image].url, size: "#{photo[:image].height}x#{photo[:image].width}" %>
-    <p class="image-details"><%= photo[:caption] %></p>
+    <%= image_tag image[:image].url, size: "#{image[:image].height}x#{image[:image].width}" %>
+    <p class="image-details"><%= image[:caption] %></p>
   </div>
 
 <% end %>

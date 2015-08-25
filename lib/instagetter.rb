@@ -9,10 +9,25 @@ class Instagetter
     images_and_tags(n).select { |image| image[:tags].include? tag }
   end
 
+  def user_details
+    user = @client.user
+    {
+      username: user.username,
+      full_name: user.full_name,
+      profile_picture: user.profile_picture
+    }
+  end
+
   private
 
     def images_and_tags(n = -1)
-      posts_by_user(n).map { |image| { image: image.images.standard_resolution, tags: image.tags, caption: image.caption.text } }
+      posts_by_user(n).map do |image|
+        {
+          image: image.images.standard_resolution,
+          tags: image.tags,
+          caption: (image.caption.blank? ? "" : image.caption.text)
+        }
+      end
     end
 
     def posts_by_user(n = -1)
