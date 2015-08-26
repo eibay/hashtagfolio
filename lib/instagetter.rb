@@ -33,19 +33,6 @@ class Instagetter
     @user
   end
 
-  def images_tagged(tag, n = -1)
-    images_and_tags(n).select { |image| image[:tags].include? tag }
-  end
-
-  def user_details
-    user = @client.user
-    {
-      username: user.username,
-      full_name: user.full_name,
-      profile_picture: user.profile_picture
-    }
-  end
-
   def images_by_user(n = -1)
     images = []
     api_call_count = calculate_api_calls(n)
@@ -56,16 +43,6 @@ class Instagetter
       next_max_id = response.pagination.next_max_id
     end
     images
-  end
-
-  def images_and_tags(n = -1)
-    images_by_user(n).map do |image|
-      {
-        image: image.images.standard_resolution,
-        tags: image.tags,
-        caption: (image.caption.blank? ? "" : image.caption.text)
-      }
-    end
   end
 
   private

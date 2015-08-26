@@ -4,6 +4,6 @@
 
 <ul>
   <% @user.albums.each do |album| %>
-    <li><%= link_to "\##{album.tag}", album %></li>
+    <li><%= link_to "\##{album.tag.name}", album %></li>
   <% end %>
 </ul>

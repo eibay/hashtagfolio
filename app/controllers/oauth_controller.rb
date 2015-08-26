@@ -20,6 +20,7 @@ class OauthController < ApplicationController
       instagram_username: response.user.username
     })
     log_in user
+    Instagetter.new(user).cache_all
     redirect_to root_url
   end
 

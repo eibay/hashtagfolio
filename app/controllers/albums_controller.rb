@@ -5,7 +5,6 @@ class AlbumsController < ApplicationController
 
   def index
     @albums = Album.all
-    @album = Album.new
   end
 
   def show
@@ -14,7 +13,9 @@ class AlbumsController < ApplicationController
   end
 
   def create
-    @album = current_user.albums.build album_params
+    tag = Tag.find_or_create_by name: params[:tag]
+    
+    @album = current_user.albums.build tag: tag
     if @album.save
       flash[:success] = "Successfully created album!"
       redirect_to @album
@@ -30,9 +31,9 @@ class AlbumsController < ApplicationController
   end
 
   private
-    def album_params
-      params.require(:album).permit(:tag)
-    end
+    # def album_params
+    #   params.require(:album).permit({ tag_attributes: :name })
+    # end
 
     def set_album
       @album = Album.find params[:id]

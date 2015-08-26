@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   resources :albums, only: [:index, :show, :create, :destroy]
   resources :users, only: [:show]
 
+  patch '/users/:id/update_media' => 'users#update_media', as: :update_media
+
   get '/login' => 'oauth#connect'
   get '/oauth/callback' => 'oauth#callback'
   delete '/logout' => 'oauth#destroy'
