@@ -37,10 +37,10 @@ header.navigation {
   $base-border-color: gainsboro !default;
   $base-border-radius: 3px !default;
   $action-color: #477DCA !default;
-  $medium-gray: #ccc !default;
+  $dark-gray: #333 !default;
   $large-screen: em(860) !default;
   $navigation-padding: 1em;
-  $navigation-background: $medium-gray;
+  $navigation-background: $dark-gray;
   $navigation-color: transparentize(white, 0.3);
   $navigation-color-hover: white;
   $navigation-height: 60px;
@@ -62,7 +62,7 @@ header.navigation {
 
   .navigation-wrapper {
     @include clearfix;
-    @include outer-container;
+    /*@include outer-container;*/
     position: relative;
     z-index: 9999;
   }
@@ -79,7 +79,7 @@ header.navigation {
     }
   }
 
-// Mobile view
+  // Mobile view
 
   .navigation-menu-button {
     color: $navigation-color;
@@ -101,7 +101,7 @@ header.navigation {
     }
   }
 
-// Nav menu
+  // Nav menu
 
   nav {
     float: none;
@@ -114,8 +114,7 @@ header.navigation {
   }
 
   ul.navigation-menu {
-    -webkit-transform-style: preserve-3d;
-// stop webkit flicker
+    -webkit-transform-style: preserve-3d; // stop webkit flicker
     clear: both;
     display: none;
     margin: 0 auto;
@@ -135,7 +134,7 @@ header.navigation {
     }
   }
 
-// The nav items
+  // The nav items
 
   ul li.nav-link {
     background: $navigation-background;
@@ -176,8 +175,7 @@ header.navigation {
     padding-bottom: 3px;
   }
 
-
-// Sub menus
+  // Sub menus
 
   li.more.nav-link {
     padding-right: 0;
@@ -243,11 +241,12 @@ header.navigation {
   ul.submenu {
     display: none;
     padding-left: 0;
+    opacity: 0.9;
 
     @include media($horizontal-bar-mode) {
       left: -$navigation-submenu-padding;
       position: absolute;
-      top: 1.5em;
+      top: 1.7em;
     }
 
     .submenu {
@@ -292,38 +291,29 @@ header.navigation {
     }
   }
 
-
-// Elements on the far right
+  // Elements on the far right
 
   .navigation-tools {
-    background: #505050;
-    /*clear: both;*/
-    display: block;
-    height: $navigation-height;
-
-    @include media($horizontal-bar-mode) {
-      background: transparent;
-      clear: none;
-      float: right;
-    }
+    background: transparent;
+    clear: none;
+    float: right;
   }
 
-
-// Search bar
+  // Search bar
 
   .search-bar {
     $search-bar-border-color: $base-border-color;
     $search-bar-border: 1px solid $search-bar-border-color;
     $search-bar-background: lighten($search-bar-border-color, 10%);
 
-    /*float: left;*/
+    float: left;
     padding: 0.85em 0.85em 0.7em 0.6em;
     width: 60%;
 
     form {
       position: relative;
 
-      input[type=search] {
+      input[type=text] {
         @include box-sizing(border-box);
         background: $navigation-search-background;
         border-radius: $base-border-radius * 2;
@@ -350,6 +340,8 @@ header.navigation {
         position: absolute;
         right: 0.3em;
         top: 0.3em;
+        color: white;
+        cursor: pointer;
 
         img {
           height: 12px;
@@ -372,6 +364,7 @@ header.navigation {
   }
 }
 
+
 /*
 
 nav {
@@ -389,6 +382,7 @@ nav {
   height: 30px;
   width: 30px;
   vertical-align: middle;
+  margin-right: 0.5em;
 }
 
 div.container {
@@ -396,6 +390,7 @@ div.container {
   /*border: 1px dashed black;*/
 }
 
+/*
 p.logo {
   font-size: 2em;
   color: #62706c;
@@ -408,9 +403,7 @@ p.logo:hover {
   color: #C65D57;
 }
 
-span {
-  color: #C65D57;
-}
+*/
 
 div.mini-profile {
   vertical-align: middle;

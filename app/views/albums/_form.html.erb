@@ -1,5 +1,5 @@
-<%= form_for @album do |f| %>
-  <%= f.label :tag %>
-  <%= f.text_field :tag, placeholder: "Add a hashtag..." %>
-  <%= f.submit %>
+
+<%= form_tag '#', { method: "create", role: "search" } do %>
+  <%= text_field_tag :tag, "", placeholder: "Add a hashtag..." %>
+  <%= button_tag "Add album" %>
 <% end %>
