@@ -9,26 +9,45 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <% if logged_in? %>
-    <p>logged in as <%= current_user.display_name %></p>
-    <%= image_tag current_user.profile_image_url %>
-    <%= link_to 'log out', logout_path, method: :delete %> |
-    <%= link_to 'view my albums', current_user %> |
-    <%= link_to 'update media', update_media_path(current_user), method: :patch %>
-  <% else %>
-    <p><%= link_to 'log in', login_path %></p>
-  <% end %>
 
-  <nav>
-    <a href="#"><h1 class="logo">#folio</h1></a>
-    <%= link_to 'Albums', albums_path %>
-  </nav>
+  <header class="navigation" role="banner">
+    <div class="navigation-wrapper">
+      <a href="javascript:void(0)" class="logo">
+        <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_1.png" alt="Logo Image">
+      </a>
+      <a href="javascript:void(0)" class="navigation-menu-button" id="js-mobile-menu">MENU</a>
+      <nav role="navigation">
+        <% if logged_in? %>
+        <div class="search-bar">
+          <%= render 'form' %>
+        </div>
+        <% end %>
+      </nav>
+      <div class="navigation-tools">
+        <ul id="js-navigation-menu" class="navigation-menu show">
+          <% if logged_in? %>
+          <li class="nav-link more"><a href="javascript:void(0)"><%= image_tag current_user.profile_image_url, class: "user-avatar" %><%= current_user.display_name %></a>
+            <ul class="submenu">
+              <li><%= link_to 'Profile', current_user %></li>
+              <li><a href="javascript:void(0)">Settings</a></li>
+              <li><%= link_to 'Update photos', update_media_path(current_user), method: :patch %></li>
+              <li><%= link_to 'Sign out', logout_path, method: :delete %></li>
+            </ul>
+          </li>
+          <% else %>
+          <li class="nav-link"><%= link_to 'Sign in', login_path %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
 
   <% flash.each do |message_type, message| %>
     <div class="alert alert-<%= message_type %>"><%= message %></div>
   <% end %>
 
-  <main class="container">
 
   <%= yield %>
 

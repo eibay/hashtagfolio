@@ -1,5 +1,5 @@
-<%= form_tag({ controller: "albums", action: "create" }, method: "post") do %>
-  <%= label_tag :tag %>
-  <%= text_field_tag :tag %>
-  <%= submit_tag "Create Album" %>
+
+<%= form_tag albums_path, { role: "search" } do %>
+  <%= text_field_tag :tag, "", placeholder: "Add a hashtag..." %>
+  <%= button_tag "Add album" %>
 <% end %>
