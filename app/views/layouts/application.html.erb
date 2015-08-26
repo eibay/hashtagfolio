@@ -12,8 +12,8 @@
   <% if logged_in? %>
     <p>logged in as <%= current_user.display_name %></p>
     <%= image_tag current_user.profile_image_url %>
-    <%= link_to 'log out', logout_path, method: :delete %>
-    <%= link_to 'view my albums', current_user %>
+    <%= link_to 'log out', logout_path, method: :delete %> |
+    <%= link_to 'view my albums', current_user %> |
     <%= link_to 'update media', update_media_path(current_user), method: :patch %>
   <% else %>
     <p><%= link_to 'log in', login_path %></p>
