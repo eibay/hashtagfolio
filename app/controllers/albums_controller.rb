@@ -14,7 +14,7 @@ class AlbumsController < ApplicationController
 
   def create
     tag = Tag.find_or_create_by name: params[:tag]
-    
+
     @album = current_user.albums.build tag: tag
     if @album.save
       flash[:success] = "Successfully created album!"
@@ -31,9 +31,6 @@ class AlbumsController < ApplicationController
   end
 
   private
-    # def album_params
-    #   params.require(:album).permit({ tag_attributes: :name })
-    # end
 
     def set_album
       @album = Album.find params[:id]
@@ -41,7 +38,7 @@ class AlbumsController < ApplicationController
 
     def check_album_owner
       unless @album.user == current_user
-        flash[:danger] = "You are not authorised to do that."
+        flash[:error] = "You are not authorised to do that."
         redirect_to root_url
       end
     end

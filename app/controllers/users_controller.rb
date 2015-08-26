@@ -8,7 +8,9 @@ class UsersController < ApplicationController
   end
 
   def update_media
-    Instagetter.new(@user).cache_all
+    client = Instagram.client(access_token: @user.instagram_access_token)
+    response = InstagramUserImagesAPI.fetch(client)
+    @user.sync_images(response)
     redirect_to @user
   end
 

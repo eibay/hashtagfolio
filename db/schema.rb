@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150825052600) do
+ActiveRecord::Schema.define(version: 20150826043034) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20150825052600) do
   end
 
   add_index "albums", ["tag_id"], name: "index_albums_on_tag_id", using: :btree
+  add_index "albums", ["user_id", "tag_id"], name: "index_albums_on_user_id_and_tag_id", unique: true, using: :btree
   add_index "albums", ["user_id"], name: "index_albums_on_user_id", using: :btree
 
   create_table "images", force: :cascade do |t|
@@ -40,6 +41,7 @@ ActiveRecord::Schema.define(version: 20150825052600) do
     t.datetime "post_time"
   end
 
+  add_index "images", ["instagram_id"], name: "index_images_on_instagram_id", unique: true, using: :btree
   add_index "images", ["user_id"], name: "index_images_on_user_id", using: :btree
 
   create_table "images_tags", id: false, force: :cascade do |t|
@@ -47,6 +49,7 @@ ActiveRecord::Schema.define(version: 20150825052600) do
     t.integer "tag_id"
   end
 
+  add_index "images_tags", ["image_id", "tag_id"], name: "index_images_tags_on_image_id_and_tag_id", unique: true, using: :btree
   add_index "images_tags", ["image_id"], name: "index_images_tags_on_image_id", using: :btree
   add_index "images_tags", ["tag_id"], name: "index_images_tags_on_tag_id", using: :btree
 
@@ -56,7 +59,7 @@ ActiveRecord::Schema.define(version: 20150825052600) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "tags", ["name"], name: "index_tags_on_name", using: :btree
+  add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "instagram_access_token"
@@ -67,6 +70,8 @@ ActiveRecord::Schema.define(version: 20150825052600) do
     t.string   "name"
     t.string   "instagram_username"
   end
+
+  add_index "users", ["instagram_id"], name: "index_users_on_instagram_id", unique: true, using: :btree
 
   add_foreign_key "albums", "tags"
   add_foreign_key "albums", "users"
