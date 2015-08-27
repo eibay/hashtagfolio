@@ -1,6 +1,5 @@
-
 <ul>
   <% @albums.each do |album| %>
-    <li><%= link_to "#{album.user.display_name} - \##{album.tag.name}", album %></li>
+    <li><%= link_to "#{album.user.display_name} - #{album.tag_list}", album %></li>
   <% end %>
 </ul>

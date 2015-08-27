@@ -1,10 +1,9 @@
-
 <header class="album-header">
   <img class="avatar" src="<%= @user.profile_image_url %>" alt="" />
   <div class="mini-profile">
     <p class="user-fullname"><%= @user.display_name %></p>
-    <p class="bio">UI designer at Dropbox</p>
-    <p class="album-tag">#<%= @album.tag.name %></p>
+    <p class="bio"><%= @user.bio %></p>
+    <p class="album-tag"><%= @album.tag_list %></p>
     <p><%= @album.image_count %> photos.</p>
   </div>
   <% if current_user == @user %>

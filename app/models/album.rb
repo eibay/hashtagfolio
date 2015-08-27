@@ -1,17 +1,23 @@
 class Album < ActiveRecord::Base
   belongs_to :user
-  belongs_to :tag
-  accepts_nested_attributes_for :tag
+  has_and_belongs_to_many :tags
 
-  validates :tag, uniqueness: { scope: :user }
-  validates :user, :tag, presence: true
+  validates :user, presence: true
 
   def images
-    user.images.select { |image| image.tags.exists?(tag.id) }
+    user.images.select { |image| (tags - image.tags).empty? }
   end
 
   def image_count
     images.count
+  end
+
+  def tag_list
+    tags_string = ""
+    tags.each do |tag|
+      tags_string += "\##{tag.name} "
+    end
+    tags_string
   end
 
 end

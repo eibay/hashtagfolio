@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   root 'albums#index'
 
   resources :albums, only: [:index, :show, :create, :destroy]
-  resources :users, only: [:show]
+  resources :users, only: [:show, :edit, :update]
 
   patch '/users/:id/update_media' => 'users#update_media', as: :update_media
 

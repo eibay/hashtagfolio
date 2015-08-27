@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
     local_ids.each do |local_id|
       Image.find_by(instagram_id: local_id).destroy unless remote_ids.include?(local_id)
     end
-    
+
     instagram_response.each do |image_response|
       image_record = images.find_or_initialize_by(instagram_id: image_response.id) do |i|
         i.link = image_response.link
@@ -39,5 +39,7 @@ class User < ActiveRecord::Base
         end
       end
     end
+
+    synced = true
   end
 end

@@ -1,10 +1,22 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :update_media]
-  before_action :check_logged_in, only: :update_media
-  before_action :check_correct_user, only: :update_media
+  before_action :set_user, only: [:show, :update_media, :edit, :update]
+  before_action :check_logged_in, only: [:update_media, :edit, :update]
+  before_action :check_correct_user, only: [:update_media, :edit, :update]
 
   def show
     @album = Album.new if logged_in?
+  end
+
+  def edit
+  end
+
+  def update
+    if @user.update user_params
+      flash[:success] = "Details updated successfully."
+      redirect_to @user
+    else
+      render :edit
+    end
   end
 
   def update_media
@@ -15,6 +27,9 @@ class UsersController < ApplicationController
   end
 
   private
+    def user_params
+      params.require(:user).permit(:bio, :email)
+    end
 
     def set_user
       @user = User.find params[:id]

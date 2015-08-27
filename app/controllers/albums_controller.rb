@@ -13,9 +13,14 @@ class AlbumsController < ApplicationController
   end
 
   def create
-    tag = Tag.find_or_create_by name: params[:tag]
+    tag_names = params[:tag].scan(/\w+/)
+    tag_records = []
+    tag_names.each do |tag_name|
+      tag_records << Tag.find_or_create_by(name: tag_name)
+    end
 
-    @album = current_user.albums.build tag: tag
+    @album = current_user.albums.build
+    @album.tags = tag_records
     if @album.save
       flash[:success] = "Successfully created album!"
       redirect_to @album

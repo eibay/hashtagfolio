@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150826043034) do
+ActiveRecord::Schema.define(version: 20150827015403) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,15 @@ ActiveRecord::Schema.define(version: 20150826043034) do
   add_index "albums", ["tag_id"], name: "index_albums_on_tag_id", using: :btree
   add_index "albums", ["user_id", "tag_id"], name: "index_albums_on_user_id_and_tag_id", unique: true, using: :btree
   add_index "albums", ["user_id"], name: "index_albums_on_user_id", using: :btree
+
+  create_table "albums_tags", id: false, force: :cascade do |t|
+    t.integer "tag_id"
+    t.integer "album_id"
+  end
+
+  add_index "albums_tags", ["album_id", "tag_id"], name: "index_albums_tags_on_album_id_and_tag_id", unique: true, using: :btree
+  add_index "albums_tags", ["album_id"], name: "index_albums_tags_on_album_id", using: :btree
+  add_index "albums_tags", ["tag_id"], name: "index_albums_tags_on_tag_id", using: :btree
 
   create_table "images", force: :cascade do |t|
     t.text     "caption"
@@ -63,12 +72,15 @@ ActiveRecord::Schema.define(version: 20150826043034) do
 
   create_table "users", force: :cascade do |t|
     t.string   "instagram_access_token"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.string   "instagram_id"
     t.string   "profile_image_url"
     t.string   "name"
     t.string   "instagram_username"
+    t.boolean  "synced",                 default: false
+    t.text     "bio"
+    t.string   "email"
   end
 
   add_index "users", ["instagram_id"], name: "index_users_on_instagram_id", unique: true, using: :btree
