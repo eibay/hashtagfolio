@@ -1,0 +1,62 @@
+div.album {
+  background-color: rgba(0, 0, 0, 1);
+  z-index: 99;
+  /*height: 350px;
+  width: 250px;*/
+  float: left;
+  display: inline-block;
+  margin-bottom: 3%;
+  position: relative;
+  transition: .3s;
+}
+
+.album:hover {
+  transform: translateY(0.3em);
+  cursor: pointer;
+}
+
+.album-overlay {
+  height: inherit;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+
+}
+
+.album img {
+  width: 100%;
+  vertical-align: middle;
+  /*border-top-left-radius: 5px;
+  border-top-right-radius: 5px;*/
+}
+
+.album p {
+  /*border: 1px dashed black;*/
+  font-size: 1.3em;
+  top: 1em;
+  left: 1em;
+  position: absolute;
+  z-index: 2;
+  color: white;
+}
+
+@media (min-width: 36em) {
+
+  div.album {
+    width: 48%;
+    margin-left: 1%;
+    margin-right: 1%;
+  }
+
+}
+
+@media (min-width: 66em) {
+
+  div.album {
+    width: 23%;
+  }
+
+}
