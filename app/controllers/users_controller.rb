@@ -4,7 +4,9 @@ class UsersController < ApplicationController
   before_action :check_correct_user, only: :update_media
 
   def show
-    @album = Album.new if logged_in?
+    @user = User.find params[:id]
+    # @album = Album.new if logged_in?
+    @albums = Album.where user_id: params[:id]
   end
 
   def update_media

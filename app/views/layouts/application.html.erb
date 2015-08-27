@@ -19,7 +19,7 @@
       <nav role="navigation">
         <% if logged_in? %>
         <div class="search-bar">
-          <%= render 'form' %>
+          <%= render 'albums/form' %>
         </div>
         <% end %>
       </nav>
@@ -45,7 +45,7 @@
   <main class="container">
 
   <% flash.each do |message_type, message| %>
-    <div class="alert alert-<%= message_type %>"><%= message %></div>
+    <div class="flash-<%= message_type %>"><%= message %></div>
   <% end %>
 
 

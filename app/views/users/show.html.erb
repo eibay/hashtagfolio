@@ -1,9 +1,26 @@
-<% if logged_in? %>
-  <%= render 'albums/form' %>
-<% end %>
 
-<ul>
-  <% @user.albums.each do |album| %>
-    <li><%= link_to "\##{album.tag.name}", album %></li>
-  <% end %>
-</ul>
+<div class="hero">
+	<div class="hero-inner">
+    <a href="" class="hero-avatar"><img src="<%= @user.profile_image_url %>" alt="" /></a>
+		<div class="hero-copy">
+			<h1><%= @user.display_name %></h1>
+			<p class="bio">UI designer at Dropbox</p>
+      <div class="stats">
+        <ul>
+          <li>4<span>Albums</span></li>
+          <li>98<span>Images</span></li>
+        </ul>
+      </div>
+		</div>
+	</div>
+</div>
+
+<% @albums.each do %>
+
+  <div class="album">
+    <div class="album-overlay"></div>
+    <p class="album-tile-tag"></p>
+    <img src="https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e35/11363659_995868700464866_380212249_n.jpg" alt="" />
+  </div>
+
+<% end %>
