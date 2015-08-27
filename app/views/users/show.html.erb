@@ -4,7 +4,9 @@
     <a href="" class="hero-avatar"><img src="<%= @user.profile_image_url %>" alt="" /></a>
 		<div class="hero-copy">
 			<h1><%= @user.display_name %></h1>
-			<p class="bio">UI designer at Dropbox</p>
+			<% if @user.bio %>
+				<p class="bio"><%= @user.bio %></p>
+			<% end %>
       <div class="stats">
         <ul>
           <li><%= @albums.count %><span>Albums</span></li>
