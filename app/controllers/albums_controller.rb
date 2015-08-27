@@ -21,6 +21,7 @@ class AlbumsController < ApplicationController
 
     @album = current_user.albums.build
     @album.tags = tag_records
+    @album.cover = @album.images.sample
     if @album.save
       flash[:success] = "Successfully created album!"
       redirect_to @album

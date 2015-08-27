@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150827015403) do
+ActiveRecord::Schema.define(version: 20150827035958) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20150827015403) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "tag_id"
+    t.integer  "cover_id"
   end
 
   add_index "albums", ["tag_id"], name: "index_albums_on_tag_id", using: :btree
@@ -81,6 +82,7 @@ ActiveRecord::Schema.define(version: 20150827015403) do
     t.boolean  "synced",                 default: false
     t.text     "bio"
     t.string   "email"
+    t.integer  "cover_id"
   end
 
   add_index "users", ["instagram_id"], name: "index_users_on_instagram_id", unique: true, using: :btree

@@ -1,6 +1,7 @@
 class Album < ActiveRecord::Base
   belongs_to :user
   has_and_belongs_to_many :tags
+  belongs_to :cover, class_name: "Image"
 
   validates :user, presence: true
 

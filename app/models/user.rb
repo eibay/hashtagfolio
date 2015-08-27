@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :albums, dependent: :destroy
   has_many :images, dependent: :destroy
+  belongs_to :cover, class_name: "Image"
 
   validates :instagram_id, uniqueness: true
   validates :instagram_access_token, :instagram_id, presence: true
@@ -40,6 +41,8 @@ class User < ActiveRecord::Base
       end
     end
 
-    synced = true
+    self.cover ||= images.sample
+    self.synced = true
+    self.save
   end
 end
