@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
 
     def check_logged_in
       unless logged_in?
-        flash[:danger] = "Please log in."
+        flash[:alert] = "Please log in."
         redirect_to root_url
       end
     end

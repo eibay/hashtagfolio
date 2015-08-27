@@ -22,7 +22,7 @@ class UsersController < ApplicationController
 
     def check_correct_user
       unless @user == current_user
-        flash[:danger] = "You are not authorised to do that."
+        flash[:error] = "You are not authorised to do that."
         redirect_to root_url
       end
     end
