@@ -1,5 +1,6 @@
 @import "bourbon";
 @import "neat";
+
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -28,8 +29,11 @@ Light Grey - #f9f9f9
 @import "reset";
 @import "refills_nav";
 @import "refills_flash";
-@import "refills_hero";
+@import "refills_hero_profile";
 @import "profile";
+@import "dashboard";
+@import "refills_parallax";
+@import "refills_hero_index";
 
 
 body {

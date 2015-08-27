@@ -8,4 +8,13 @@ class Image < ActiveRecord::Base
   def tag_names
     tags.map { |tag| tag.name }
   end
+
+  def tag_list
+    tags_string = ""
+    tags.each do |tag|
+      tags_string += "\##{tag.name} "
+    end
+    tags_string
+  end
+
 end

@@ -4,7 +4,11 @@ class AlbumsController < ApplicationController
   before_action :check_album_owner, only: [:destroy]
 
   def index
-    @albums = Album.all
+    if logged_in?
+      @images = current_user.images
+    else
+      @albums = Album.all
+    end
   end
 
   def show
