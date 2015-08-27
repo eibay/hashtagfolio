@@ -1,5 +1,5 @@
-<ul>
-  <% @albums.each do |album| %>
-    <li><%= link_to "#{album.user.display_name} - #{album.tag_list}", album %></li>
-  <% end %>
-</ul>
+<% content_for :head do %>
+  <%= javascript_include_tag "albums" %>
+<% end %>
+
+<div id="albums" data-user-id="<%= @user.id if @user %>"></div>

@@ -21,4 +21,8 @@ class Album < ActiveRecord::Base
     tags_string
   end
 
+  def cover_url
+    cover.url
+  end
+
 end

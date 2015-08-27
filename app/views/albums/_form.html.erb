@@ -1,5 +1,6 @@
-
-<%= form_tag albums_path, { role: "search" } do %>
-  <%= text_field_tag :tag, "", placeholder: "Add a hashtag..." %>
-  <%= button_tag "Add album" %>
+<%= form_tag search_path(current_user), { role: "search", method: :get } do %>
+  <%= text_field_tag :tag, "", placeholder: "\#tag search" %>
+  <button type="submit">
+    <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon.png" alt="Search Icon">
+  </button>
 <% end %>

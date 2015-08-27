@@ -4,12 +4,27 @@ class AlbumsController < ApplicationController
   before_action :check_album_owner, only: [:destroy]
 
   def index
-    @albums = Album.all
+    if params[:user_id]
+      @user = User.find(params[:user_id])
+      @albums = @user.albums
+    else
+      @albums = Album.all
+    end
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @albums.to_json(methods: [:cover_url, :tag_list]) }
+    end
   end
 
   def show
     @images = @album.images
-    @user = @album.user
+    @owner = @album.user
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @images }
+    end
   end
 
   def create

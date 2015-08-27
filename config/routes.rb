@@ -6,8 +6,14 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'albums#index'
 
-  resources :albums, only: [:index, :show, :create, :destroy]
-  resources :users, only: [:show, :edit, :update]
+  resources :users, only: [:show, :edit, :update], shallow: true do
+    resources :albums, only: [:index, :show, :create, :destroy]
+  end
+
+  resources :albums, only: [:index]
+
+  get '/users/:id/search' => 'users#search', as: :search
+  get '/users/:id/search_results' => 'users#search_results', as: :search_results
 
   patch '/users/:id/update_media' => 'users#update_media', as: :update_media
 

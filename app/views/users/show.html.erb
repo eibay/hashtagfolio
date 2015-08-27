@@ -1,3 +1,6 @@
+<% content_for :head do %>
+	<%= javascript_include_tag "profile" %>
+<% end %>
 
 <div class="hero">
 	<div class="hero-inner">
@@ -17,12 +20,4 @@
 	</div>
 </div>
 
-<% @albums.each do |album| %>
-
-  <div class="album">
-    <div class="album-overlay"></div>
-    <p class="album-tile-tag"><%= album.tag_list %></p>
-    <img src="https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e35/11363659_995868700464866_380212249_n.jpg" alt="" />
-  </div>
-
-<% end %>
+<div id="albums" data-user-id="<%= @user.id %>"></div>
