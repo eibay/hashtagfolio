@@ -29,7 +29,10 @@ class UsersController < ApplicationController
     client = Instagram.client(access_token: @user.instagram_access_token)
     response = InstagramUserImagesAPI.fetch(client)
     @user.sync_images(response)
-    redirect_to @user
+    respond_to do |format|
+      format.html { redirect_to @user }
+      format.json { render json: @user }
+    end
   end
 
   def search

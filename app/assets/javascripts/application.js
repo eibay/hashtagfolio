@@ -15,3 +15,4 @@
 
 //= require handlebars-v3.0.3.js
 //= require refills
+//= require user

@@ -21,9 +21,7 @@ class OauthController < ApplicationController
     new_user = user.new_record?
     if user.save
       log_in user
-      client = Instagram.client(access_token: user.instagram_access_token)
-      response = InstagramUserImagesAPI.fetch(client)
-      user.sync_images(response)
+      
       if new_user
         flash[:success] = "You have successfully signed up. Welcome!"
         redirect_to edit_user_path(user)

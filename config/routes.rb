@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   get '/users/:id/search' => 'users#search', as: :search
   get '/users/:id/search_results' => 'users#search_results', as: :search_results
 
-  patch '/users/:id/update_media' => 'users#update_media', as: :update_media
+  post '/users/:id/update_media' => 'users#update_media', as: :update_media
 
   get '/login' => 'oauth#connect'
   get '/oauth/callback' => 'oauth#callback'
