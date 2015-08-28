@@ -1,5 +1,5 @@
 class OauthController < ApplicationController
-  CALLBACK_URL = "http://localhost:3000/oauth/callback"
+  CALLBACK_URL = root_url + "oauth/callback"
 
   def connect
     if logged_in?
