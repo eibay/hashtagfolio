@@ -21,14 +21,32 @@
   color: #1ECD97;
   padding: 0.5em 1em;
   background: white;
-  margin: 2em 2em;
-  display: block;
-  width: 10em;
-
 }
 
 .save-album-button:hover {
   background: #1ECD97;
   color: white;
   cursor: pointer;
+}
+
+.cancel-album-button {
+  height: 3em;
+  border: 2px solid #ccc;
+  font-size: 1.025em;
+  color: #ccc;
+  padding: 0.5em 1em;
+  background: white;
+}
+
+.cancel-album-button:hover {
+  background: #ccc;
+  color: white;
+  cursor: pointer;
+}
+
+div.album-save {
+  height: 5em;
+  width: 100%;
+  padding-top: 1.75em;
+  padding-left: 1em;
 }

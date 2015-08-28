@@ -2,6 +2,9 @@
   <%= javascript_include_tag "search" %>
 <% end %>
 
+<div class="album-save">
 <%= link_to "Save album", user_albums_path(current_user, query: @query), method: :post, class: 'save-album-button' %>
+<a class="cancel-album-button">Cancel</a>
+</div>
 
 <div id="images" data-user-id="<%= current_user.id %>" data-query="<%= @query %>"></div>
