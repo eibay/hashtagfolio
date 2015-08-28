@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render json: { albums: @albums.to_json(methods: [:cover_url, :tag_list, :owner_profile_image_url]), user_cover_url: @user.cover.url } }
+      format.json { render json: { albums: @albums.to_json(methods: [:cover_url, :tag_list, :owner_profile_image_url, :image_count]), user_cover_url: @user.cover.url } }
     end
   end
 
