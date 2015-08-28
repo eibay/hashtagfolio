@@ -25,4 +25,8 @@ class Album < ActiveRecord::Base
     cover.url if cover
   end
 
+  def owner_profile_image_url
+    user.profile_image_url
+  end
+
 end

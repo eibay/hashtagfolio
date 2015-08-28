@@ -29,6 +29,14 @@ $(document).ready(function() {
         });
         $('.container').prepend($flashError);
         $flashError.fadeIn();
+        window.setTimeout(function() {
+          $flashError.fadeOut({
+            duration: 1000,
+            complete: function() {
+              $flashError.remove();
+            }
+          });
+        }, 3000);
       },
       complete: function() {
         app.syncing = false;

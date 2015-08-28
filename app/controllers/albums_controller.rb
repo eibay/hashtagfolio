@@ -13,7 +13,7 @@ class AlbumsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render json: @albums.to_json(methods: [:cover_url, :tag_list]) }
+      format.json { render json: @albums.to_json(methods: [:cover_url, :tag_list, :image_count, :owner_profile_image_url]) }
     end
   end
 
@@ -23,7 +23,7 @@ class AlbumsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render json: @images }
+      format.json { render json: @images.to_json(methods: :tag_list) }
     end
   end
 

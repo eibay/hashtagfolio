@@ -1,11 +1,5 @@
-<div class="dashboard-images">
+<% content_for :head do %>
+  <%= javascript_include_tag 'dashboard' %>
+<% end %>
 
-  <% @images.each do |image| %>
-    <div class="album">
-      <div class="album-overlay"></div>
-      <p class="album-tile-tag"><%= image.tag_list %></p>
-      <%= image_tag image.url %>
-    </div>
-  <% end %>
-
-</div>
+<div class="dashboard-images"></div>

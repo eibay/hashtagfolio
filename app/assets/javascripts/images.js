@@ -1,6 +1,5 @@
 $(document).ready(function() {
-  console.log("A");
-  var source = $('#image-template').html();
+  var source = $('#image-display-template').html();
   var imageTemplate = Handlebars.compile(source);
 
   var $images = $('#images');
@@ -12,7 +11,7 @@ $(document).ready(function() {
     });
   });
 
-  $images.on('click', '.image', function() {
+  $images.on('click', '.album', function() {
     var url = $(this).find('img').attr('src');
     $('#lightbox-image').attr('src', url);
     $("body").addClass("modal-open");
@@ -27,6 +26,4 @@ $(document).ready(function() {
   $(".modal-inner").on("click", function(e) {
     e.stopPropagation();
   });
-
-
 });
