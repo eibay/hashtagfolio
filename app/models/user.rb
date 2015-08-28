@@ -11,6 +11,9 @@ class User < ActiveRecord::Base
   end
 
   def sync_images(instagram_response)
+    self.sync_status = "syncing"
+    self.save
+    
     local_ids = images.pluck(:instagram_id)
     remote_ids = instagram_response.map { |i| i.id }
     local_ids.each do |local_id|
@@ -42,7 +45,7 @@ class User < ActiveRecord::Base
     end
 
     self.cover ||= images.sample
-    self.synced = true
+    self.sync_status = "synced"
     self.save
   end
 end

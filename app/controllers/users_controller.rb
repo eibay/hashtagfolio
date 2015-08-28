@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update user_params
-      flash[:success] = "Details updated successfully."
+      flash[:success] = "Details updated."
       redirect_to @user
     else
       render :edit
@@ -26,34 +26,15 @@ class UsersController < ApplicationController
   end
 
   def update_media
-    client = Instagram.client(access_token: @user.instagram_access_token)
-    response = InstagramUserImagesAPI.fetch(client)
-    @user.sync_images(response)
+    unless @user.sync_status == "syncing"
+      client = Instagram.client(access_token: @user.instagram_access_token)
+      response = InstagramUserImagesAPI.fetch(client)
+      @user.sync_images(response)
+    end
+
     respond_to do |format|
       format.html { redirect_to @user }
       format.json { render json: @user }
-    end
-  end
-
-  def search
-    @query = params[:query]
-
-    respond_to do |format|
-      format.html
-    end
-  end
-
-  def search_results
-    tag_names = params[:query].to_s.scan(/\w+/)
-    tag_records = []
-    tag_names.each do |tag_name|
-      tag_records << Tag.find_or_create_by(name: tag_name.downcase)
-    end
-
-    @images = current_user.images.select { |image| (tag_records - image.tags).empty? }
-
-    respond_to do |format|
-      format.json { render json: @images }
     end
   end
 

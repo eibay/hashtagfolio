@@ -1,5 +1,5 @@
 class OauthController < ApplicationController
-  CALLBACK_URL = "http://localhost:3000/oauth/callback"
+  CALLBACK_URL = "https://hashtagfolio.herokuapp.com/oauth/callback"
 
   def connect
     if logged_in?
@@ -26,7 +26,7 @@ class OauthController < ApplicationController
         flash[:success] = "You have successfully signed up. Welcome!"
         redirect_to edit_user_path(user)
       else
-        flash[:success] = "Welcome back!"
+        flash[:success] = "Welcome back."
         redirect_to dashboard_path
       end
     else

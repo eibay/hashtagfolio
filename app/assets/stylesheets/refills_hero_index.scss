@@ -7,9 +7,9 @@
   $hero-background-bottom: #20392B;
   $hero-color: white;
   $gradient-angle: 10deg;
-  $hero-image-index: 'https://files.slack.com/files-pri/T0351JZQ0-F09PQH6P5/phone.jpg';
+  $hero-image-index: image-url("phone");
 
-  @include background(url($hero-image-index), linear-gradient($gradient-angle, $hero-background-bottom, $hero-background-top), no-repeat $hero-background-top scroll);
+  @include background($hero-image-index, linear-gradient($gradient-angle, $hero-background-bottom, $hero-background-top), no-repeat $hero-background-top scroll);
   background-color: #324766;
   background-position: top;
   background-repeat: no-repeat;
