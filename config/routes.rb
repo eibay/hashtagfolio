@@ -14,8 +14,8 @@ Rails.application.routes.draw do
 
   resources :albums, only: [:index]
 
-  get '/users/:id/search' => 'users#search', as: :search
-  get '/users/:id/search_results' => 'users#search_results', as: :search_results
+  get '/users/:id/search' => 'images#search', as: :search
+  get '/users/:id/search_results' => 'images#search_results', as: :search_results
 
   post '/users/:id/update_media' => 'users#update_media', as: :update_media
 

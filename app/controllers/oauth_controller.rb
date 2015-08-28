@@ -26,7 +26,7 @@ class OauthController < ApplicationController
         flash[:success] = "You have successfully signed up. Welcome!"
         redirect_to edit_user_path(user)
       else
-        flash[:success] = "Welcome back!"
+        flash[:success] = "Welcome back."
         redirect_to dashboard_path
       end
     else

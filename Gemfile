@@ -25,6 +25,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'instagram', '~> 1.1.5'
 gem "figaro"
+gem 'puma'
 
 gem 'bourbon'
 gem 'neat'

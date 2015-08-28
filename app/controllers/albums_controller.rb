@@ -38,7 +38,7 @@ class AlbumsController < ApplicationController
     @album.tags = tag_records
     @album.cover = @album.images.sample
     if @album.save
-      flash[:success] = "Successfully created album!"
+      flash[:success] = "Album saved."
       redirect_to @album
     else
       flash[:error] = "Could not save album."

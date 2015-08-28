@@ -6,7 +6,8 @@
   <script type="text/javascript">
     var app = app || {};
     <% if logged_in? %>
-      app.sync_images = <%= !current_user.synced %>;
+      app.sync_images = <%= current_user.sync_status == "waiting" %>;
+      app.syncing = <%= current_user.sync_status == "syncing" %>;
       app.current_user_id = <%= current_user.id %>;
     <% end %>
   </script>
@@ -37,7 +38,7 @@
             <ul class="submenu">
               <li><%= link_to 'Profile', current_user %></li>
               <li><a href="<%= edit_user_path(current_user) %>">Settings</a></li>
-              <li><%= link_to 'Update photos', update_media_path(current_user), method: :post %></li>
+              <li><%= link_to 'Update photos', update_media_path(current_user), method: :post, id: "update-media-link" %></li>
               <li><%= link_to 'Sign out', logout_path, method: :delete %></li>
             </ul>
           </li>
@@ -52,7 +53,7 @@
   <main class="container">
 
   <% flash.each do |message_type, message| %>
-    <div class="flash-<%= message_type %>"><%= message %></div>
+    <div class="flash flash-<%= message_type %>"><%= message %></div>
   <% end %>
 
 
