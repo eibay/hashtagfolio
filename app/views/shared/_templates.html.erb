@@ -1,11 +1,14 @@
 <script id="image-template" type="text/x-handlebars-template">
+
   <div class="image">
     <img src="{{ url }}" alt="">
     <p class="image-details">{{ caption }}</p>
   </div>
+  
 </script>
 
 <script id="album-template" type="text/x-handlebars-template">
+
   <div class="album">
     <a href="/albums/{{ id }}">
       <div class="album-overlay"></div>
@@ -13,4 +16,5 @@
       <img src="{{ cover_url }}" alt="">
     </a>
   </div>
+
 </script>

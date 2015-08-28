@@ -7,14 +7,15 @@
   $hero-background-bottom: #20392B;
   $hero-color: white;
   $gradient-angle: 10deg;
-  $hero-image-index: 'https://images.unsplash.com/photo-1425315283416-2acc50323ee6?q=80&fm=jpg&s=94c3e17a79354c33dbd59ced862b1460';
+  $hero-image-index: 'https://files.slack.com/files-pri/T0351JZQ0-F09PQH6P5/phone.jpg';
 
   @include background(url($hero-image-index), linear-gradient($gradient-angle, $hero-background-bottom, $hero-background-top), no-repeat $hero-background-top scroll);
   background-color: #324766;
   background-position: top;
   background-repeat: no-repeat;
   background-size: cover;
-  padding-bottom: 3em;
+  padding-top: 2em;
+  padding-bottom: 2em;
   margin-bottom: 2em;
 
   .hero-logo img {

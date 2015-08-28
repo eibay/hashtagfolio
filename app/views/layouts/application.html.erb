@@ -14,6 +14,7 @@
   <%= yield :head %>
   <%= csrf_meta_tags %>
   <link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
 <body>
 
@@ -42,7 +43,7 @@
             </ul>
           </li>
           <% else %>
-          <li class="nav-link"><%= link_to 'Sign in', login_path %></li>
+          <li class="nav-link"><a href="<%= login_path %>"><i class="fa fa-instagram"></i> Sign in</a></li>
           <% end %>
         </ul>
       </div>

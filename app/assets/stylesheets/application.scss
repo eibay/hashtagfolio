@@ -36,6 +36,7 @@ Light Grey - #f9f9f9
 @import "dashboard";
 @import "refills_parallax";
 @import "albums";
+@import "static_pages";
 
 body {
   background-color: #fff;
@@ -159,11 +160,11 @@ p.image-details {
   color: #ccc;
 }
 
-div.image:hover .fa-plus-square {
-  visibility: visible;
+.fa-instagram {
+  font-size: 3em;
+  margin-right: 0.3em;
+
 }
-
-
 
 @media (min-width: 36em) {
 

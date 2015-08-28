@@ -22,7 +22,7 @@ class Album < ActiveRecord::Base
   end
 
   def cover_url
-    cover.url
+    cover.url if cover
   end
 
 end
