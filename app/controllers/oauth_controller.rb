@@ -1,5 +1,7 @@
 class OauthController < ApplicationController
-  CALLBACK_URL = "http://localhost:3000/oauth/callback" #"https://hashtagfolio.herokuapp.com/oauth/callback"
+
+  CALLBACK_URL = "https://hashtagfolio.herokuapp.com/oauth/callback"
+  # CALLBACK_URL = "http://localhost:3000/oauth/callback"
 
   def connect
     if logged_in?

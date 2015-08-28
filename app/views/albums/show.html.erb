@@ -5,8 +5,10 @@
 <header class="album-header">
   <img class="avatar" src="<%= @owner.profile_image_url %>" alt="" />
   <div class="mini-profile">
-    <p class="user-fullname"><%= @owner.display_name %></p>
-    <p class="bio"><%= @owner.bio %></p>
+    <p class="user-fullname"><%= link_to @owner.display_name, @owner %></p>
+    <% if @owner.bio %>
+      <p class="bio"><%= @owner.bio %></p>
+    <% end %>
     <p class="album-tag"><%= @album.tag_list %></p>
     <p><%= @album.image_count %> photos.</p>
   </div>

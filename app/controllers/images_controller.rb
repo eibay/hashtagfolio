@@ -3,6 +3,11 @@ class ImagesController < ApplicationController
 
   def index
     @images = current_user.images.order(post_time: :desc).limit(24)
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @images.to_json(methods: :tag_list) }
+    end
   end
 
   def search
@@ -23,7 +28,7 @@ class ImagesController < ApplicationController
     @images = current_user.images.select { |image| (tag_records - image.tags).empty? }
 
     respond_to do |format|
-      format.json { render json: @images }
+      format.json { render json: @images.to_json(methods: :tag_list) }
     end
   end
 end

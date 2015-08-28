@@ -1,8 +1,17 @@
 <script id="image-template" type="text/x-handlebars-template">
 
-  <div class="image">
+  <div class="album">
+    <div class="album-overlay"></div>
+    <p class="album-tile-tag">{{ tag_list }}</p>
     <img src="{{ url }}" alt="">
-    <p class="image-details">{{ caption }}</p>
+  </div>
+
+</script>
+
+<script id="image-display-template" type="text/x-handlebars-template">
+
+  <div class="album">
+    <img src="{{ url }}" alt="">
   </div>
 
 </script>
@@ -14,6 +23,8 @@
       <div class="album-overlay"></div>
       <p class="album-tile-tag">{{ tag_list }}</p>
       <img src="{{ cover_url }}" alt="">
+      <a href="/users/{{ owner_id }}"><img class="album-avatar" src="{{ owner_profile_image_url }}" alt="" /></a>
+      <p class="album-image-count"><i class="fa fa-picture-o"></i> {{ image_count }}</p>
     </a>
   </div>
 
