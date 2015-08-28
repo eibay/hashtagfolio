@@ -11,7 +11,7 @@
     <p><%= @album.image_count %> photos.</p>
   </div>
   <% if current_user == @owner %>
-    <%= link_to 'delete album', @album, method: :delete %>
+    <%= link_to 'Delete album', @album, method: :delete, class: 'delete-button'%>
   <% end %>
 </header>
 

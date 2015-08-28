@@ -2,6 +2,6 @@
   <%= javascript_include_tag "search" %>
 <% end %>
 
-<%= link_to "Save as Album", user_albums_path(current_user, query: @query), method: :post %>
+<%= link_to "Save album", user_albums_path(current_user, query: @query), method: :post, class: 'save-album-button' %>
 
 <div id="images" data-user-id="<%= current_user.id %>" data-query="<%= @query %>"></div>
