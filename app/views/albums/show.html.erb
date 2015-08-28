@@ -1,21 +1,18 @@
+<% content_for :head do %>
+  <%= javascript_include_tag 'images' %>
+<% end %>
+
 <header class="album-header">
-  <img class="avatar" src="<%= @user.profile_image_url %>" alt="" />
+  <img class="avatar" src="<%= @owner.profile_image_url %>" alt="" />
   <div class="mini-profile">
-    <p class="user-fullname"><%= @user.display_name %></p>
-    <p class="bio"><%= @user.bio %></p>
+    <p class="user-fullname"><%= @owner.display_name %></p>
+    <p class="bio"><%= @owner.bio %></p>
     <p class="album-tag"><%= @album.tag_list %></p>
     <p><%= @album.image_count %> photos.</p>
   </div>
-  <% if current_user == @user %>
+  <% if current_user == @owner %>
     <%= link_to 'delete album', @album, method: :delete %>
   <% end %>
 </header>
 
-<% @images.each do |image| %>
-
-  <div class="image">
-    <%= image_tag image.url %>
-    <p class="image-details"><%= image.caption %></p>
-  </div>
-
-<% end %>
+<div id="images" data-album-id="<%= @album.id %>"></div>

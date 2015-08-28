@@ -5,8 +5,12 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find params[:id]
-    # @album = Album.new if logged_in?
-    @albums = Album.where user_id: params[:id]
+    @albums = @user.albums
+
+    respond_to do |format|
+      format.html
+      format.json { render json: { albums: @albums.to_json(methods: [:cover_url, :tag_list]), user_cover_url: @user.cover.url } }
+    end
   end
 
   def edit
@@ -25,7 +29,32 @@ class UsersController < ApplicationController
     client = Instagram.client(access_token: @user.instagram_access_token)
     response = InstagramUserImagesAPI.fetch(client)
     @user.sync_images(response)
-    redirect_to @user
+    respond_to do |format|
+      format.html { redirect_to @user }
+      format.json { render json: @user }
+    end
+  end
+
+  def search
+    @query = params[:query]
+
+    respond_to do |format|
+      format.html
+    end
+  end
+
+  def search_results
+    tag_names = params[:query].to_s.scan(/\w+/)
+    tag_records = []
+    tag_names.each do |tag_name|
+      tag_records << Tag.find_or_create_by(name: tag_name.downcase)
+    end
+
+    @images = current_user.images.select { |image| (tag_records - image.tags).empty? }
+
+    respond_to do |format|
+      format.json { render json: @images }
+    end
   end
 
   private

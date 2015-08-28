@@ -1,15 +1,23 @@
 Rails.application.routes.draw do
-
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'albums#index'
+  root 'static_pages#index'
 
-  resources :albums, only: [:index, :show, :create, :destroy]
-  resources :users, only: [:show, :edit, :update]
+  resources :users, only: [:show, :edit, :update], shallow: true do
+    resources :albums, only: [:show, :create, :destroy]
+    resources :images, only: [:index]
+  end
 
-  patch '/users/:id/update_media' => 'users#update_media', as: :update_media
+  get '/dashboard' => 'images#index', as: :dashboard
+
+  resources :albums, only: [:index]
+
+  get '/users/:id/search' => 'users#search', as: :search
+  get '/users/:id/search_results' => 'users#search_results', as: :search_results
+
+  post '/users/:id/update_media' => 'users#update_media', as: :update_media
 
   get '/login' => 'oauth#connect'
   get '/oauth/callback' => 'oauth#callback'

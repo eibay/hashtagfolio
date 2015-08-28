@@ -1,0 +1,6 @@
+<%= form_tag search_path(current_user), { role: "search", method: :get } do %>
+  <%= search_field_tag :query, "", placeholder: "Search your \#tags" %>
+  <button type="submit">
+    <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon.png" alt="Search Icon">
+  </button>
+<% end %>

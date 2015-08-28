@@ -2,11 +2,18 @@
 <html>
 <head>
   <title>#folio</title>
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
-  <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">-->
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <script type="text/javascript">
+    var app = app || {};
+    <% if logged_in? %>
+      app.sync_images = <%= !current_user.synced %>;
+      app.current_user_id = <%= current_user.id %>;
+    <% end %>
+  </script>
+  <%= javascript_include_tag 'application' %>
+  <%= yield :head %>
   <%= csrf_meta_tags %>
+  <link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
 </head>
 <body>
 
@@ -19,12 +26,7 @@
       <nav role="navigation">
         <% if logged_in? %>
         <div class="search-bar">
-          <form role="search">
-            <input type="search" placeholder="Search for #tags..." />
-              <button type="submit">
-                <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/search-icon.png" alt="Search Icon">
-              </button>
-          </form>
+          <%= render 'shared/form' %>
         </div>
         <% end %>
       </nav>
@@ -34,8 +36,8 @@
           <li class="nav-link more"><a href="javascript:void(0)"><%= image_tag current_user.profile_image_url, class: "user-avatar" %><%= current_user.display_name %></a>
             <ul class="submenu">
               <li><%= link_to 'Profile', current_user %></li>
-              <li><a href="<%= edit_user_path current_user %>">Settings</a></li>
-              <li><%= link_to 'Update photos', update_media_path(current_user), method: :patch %></li>
+              <li><a href="<%= edit_user_path(current_user) %>">Settings</a></li>
+              <li><%= link_to 'Update photos', update_media_path(current_user), method: :post %></li>
               <li><%= link_to 'Sign out', logout_path, method: :delete %></li>
             </ul>
           </li>
@@ -57,6 +59,9 @@
   <%= yield %>
 
   </main>
+
+  <%= render 'shared/templates' %>
+  <%= render 'shared/modal' %>
 
 </body>
 </html>

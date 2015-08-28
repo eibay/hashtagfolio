@@ -1,50 +1,5 @@
-
-<% if logged_in? %>
-
-<div class="dashboard-images">
-
-  <% @images.each do |image| %>
-    <div class="album">
-      <div class="album-overlay"></div>
-      <p class="album-tile-tag"><%= image.tag_list %></p>
-      <%= image_tag image.url %>
-    </div>
-  <% end %>
-
-</div>
-
-<% else %>
-
-  <div class="hero-index">
-  	<div class="hero-inner">
-      <a href="" class="hero-logo"><img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_1.png
-  " alt="Logo Image"></a>
-  		<div class="hero-copy">
-  			<h1>#Folio</h1>
-  			<p>The easiest way to create and organize Instagram albums.</p>
-  		</div>
-  	</div>
-  </div>
-
-  <% @albums.each do |album| %>
-
-    <div class="album">
-      <div class="album-overlay"></div>
-      <p class="album-tile-tag"><%= album.tag_list %></p>
-      <% if album.cover_id %>
-        <%= image_tag album.cover.url %>
-      <% else %>
-        <img src="https://scontent.cdninstagram.com/hphotos-xaf1/t51.2885-15/e35/11363659_995868700464866_380212249_n.jpg" alt="" />
-      <% end %>
-    </div>
-
-  <% end %>
-
-<!-- <div id="js-parallax-window" class="parallax-window">
-  <div class="parallax-static-content">
-    <b>Parallax Window</b>
-  </div>
-  <div id="js-parallax-background" class="parallax-background"></div>
-</div> -->
-
+<% content_for :head do %>
+  <%= javascript_include_tag "albums" %>
 <% end %>
+
+<div id="albums" data-user-id="<%= @user.id if @user %>"></div>
